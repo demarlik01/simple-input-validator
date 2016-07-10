@@ -1,0 +1,18 @@
+
+@request(method=['GET'])
+
+use None Type...
+use Unicode
+1. @validator(fields=[IntegerField(name='asdf', max_value=1233), StirngField(name='asdf', max_length="10")])
+
+2. validator = FormValidator()
+if validator.validate():
+    print 'asdf'
+
+3. require value, optional values
+
+class validator:
+    
+    def __init__:
+        
+
