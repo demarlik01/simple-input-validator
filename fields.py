@@ -1,8 +1,14 @@
+# coding: utf-8
+import sys
+import re
+
+
 __all__ = (
     'Field',
     'IntegerField',
+    'FloatField',
     'StringField',
-    'FloatField'
+    'EmailField'
 )
 
 
@@ -46,25 +52,7 @@ class IntegerField(Field):
             raise ValueError('Error %s is not int' % self.name)
 
 
-class StringField(Field):
-    """
-    StringField
-    """
-    def __init__(self, name, value):
-        super(StringField, self).__init__(name, value)
-
-    def is_string(self, string):
-        import sys
-        if sys.version_info[0] < 3:
-            return isinstance(self.value, basestring)
-        return isinstance(self.value, str)
-
-    def check(self):
-        if self.is_string(self.value) is False:
-            raise ValueError('Error %s is not string' % self.name)
-
-
-class FloatField(Field):
+class FloatField(IntegerField):
     """
     floatField
     """
@@ -74,3 +62,36 @@ class FloatField(Field):
     def check(self):
         if isinstance(self.value, float) is False:
             raise ValueError('Error %s is not float' % self.name)
+
+
+class StringField(Field):
+    """
+    StringField
+    """
+    def __init__(self, name, value):
+        super(StringField, self).__init__(name, value)
+
+    def is_string(self, string):
+        if sys.version_info[0] < 3:
+            return isinstance(self.value, basestring)
+        return isinstance(self.value, str)
+
+    def check(self):
+        if self.is_string(self.value) is False:
+            raise ValueError('Error %s is not string' % self.name)
+
+
+class EmailField(Field):
+    """
+    EmailField
+    """
+    email_regex = '(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)'
+
+    def __init__(self, name, value, email_regex):
+        super(EmailField, self).__init__(name, value)
+        if email_regex is not None:
+            self.email_regex = email_regex
+
+    def check(self):
+        if re.match(self.email_regex, self.value) is False:
+            raise ValueError('Error %s is not email' % self.name)
