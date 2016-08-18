@@ -1,14 +1,26 @@
 # coding: utf-8
 
+from fields import *
 
 class Validator(object):
     """
     validator
     """
-    fields = tuple()
+    inputs = None
 
-    def __init__(self, fields):
-        self.fields = fields
+    def __init__(self):
+        pass
+
+    def check_required_names(self):
+        self.__dict__.keys()
 
     def valdate(self):
-        pass
+        print self
+
+
+class aValidator(Validator):
+    """
+    test
+    """
+    age = IntegerField()
+    name = StringField()
