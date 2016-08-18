@@ -2,6 +2,7 @@
 
 from fields import *
 
+
 class Validator(object):
     """
     validator
@@ -12,7 +13,10 @@ class Validator(object):
         pass
 
     def check_required_names(self):
-        self.__dict__.keys()
+        print self.__dict__.keys()
+
+    def set_values():
+        pass
 
     def valdate(self):
         print self

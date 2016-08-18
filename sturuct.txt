@@ -31,7 +31,9 @@ inputs =
 required...
 
 validate
-1. exists keys on validator
+1. exists keys on validator     
+    - check values 
+    - set value to Fields
 2. fields.process()
 3. error return
 @decorate(validator = aValidator)
