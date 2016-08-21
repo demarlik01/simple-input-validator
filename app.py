@@ -12,6 +12,7 @@ def validate(validator):
         def decorated_func(*args, **kwargs):
             print validator.check_required_names()
             print request.args
+            validator.set_values()
             return func(*args, **kwargs)
         return decorated_func
     return wrapper

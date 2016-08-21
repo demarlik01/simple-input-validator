@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import inspect
 from fields import *
 
 
@@ -15,8 +16,10 @@ class Validator(object):
     def check_required_names(self):
         print self.__dict__.keys()
 
-    def set_values():
-        pass
+    def set_values(self):
+        members = inspect.getmembers(self, lambda a:not(inspect.isroutine(a)))
+        attributes = [a for a in members if not(a[0].startswith('__') and a[0].endswith('__'))]
+        print attributes        
 
     def valdate(self):
         print self
