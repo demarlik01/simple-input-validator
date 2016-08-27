@@ -112,7 +112,7 @@ class StringField(Field):
             return isinstance(self.value, basestring)
         return isinstance(self.value, str)
 
-
+    def check(self):
         if self.is_string(self.value) is False:
             raise ValueError('Error %s is not string' % self.name)
 

@@ -10,9 +10,7 @@ def validate(validator):
     def wrapper(func):
         @wraps(func)
         def decorated_func(*args, **kwargs):
-            print validator.check_required_names()
-            print request.args
-            validator.set_values()
+            validator.validate(request.args)
             return func(*args, **kwargs)
         return decorated_func
     return wrapper
