@@ -1,22 +1,12 @@
 # coding: utf-8
+
 from flask import Flask
-from flask import request
-from functools import wraps
 from validator import aValidator
+from utils import validate
 app = Flask(__name__)
 
 
-def validate(validator):
-    def wrapper(func):
-        @wraps(func)
-        def decorated_func(*args, **kwargs):
-            validator.validate(request.args)
-            return func(*args, **kwargs)
-        return decorated_func
-    return wrapper
-
-
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 @validate(validator=aValidator())
 def hello():
     return "hi"
