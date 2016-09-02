@@ -1,13 +1,16 @@
 # coding: utf-8
 
 from flask import Flask
-from validator import aValidator
-from utils import validate
+from siv import IntegerField, StringField
+from siv import validate
+
+from validator import registerValidator
+
+
 app = Flask(__name__)
 
-
 @app.route("/", methods=['GET', 'POST'])
-@validate(validator=aValidator())
+@validate(validator=registerValidator())
 def hello():
     return "hi"
 

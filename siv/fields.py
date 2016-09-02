@@ -3,14 +3,14 @@ import sys
 import re
 import numbers
 
-__all__ = (
+__all__ = [
     'Field',
     'NumbericField',
     'IntegerField',
     'FloatField',
     'StringField',
     'EmailField'
-)
+]
 
 
 class Field(object):
