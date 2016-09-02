@@ -17,16 +17,10 @@ class Field(object):
     """
     field
     """
-    name = None
-    require = None
-    error = ""
-
     def __init__(self, name, value, require):
         self.name = name
         self.value = value
         self.require = require
-        # name : name of input key
-        # value : value of input
 
     def check(self):
         pass
@@ -46,9 +40,6 @@ class NumbericField(Field):
     """
     NumbericField
     """
-    min = None
-    max = None
-
     def __init__(self, name=None, value=None, require=False, min=None, max=None):
         super(NumbericField, self).__init__(name, value, require)
         self.min = min
@@ -99,9 +90,6 @@ class StringField(Field):
     """
     StringField
     """
-    min_length = None
-    max_length = None
-
     def __init__(self, name=None, value=None, require=False, min_length=None, max_length=None):
         super(StringField, self).__init__(name, value, require)
         self.min_length = min_length

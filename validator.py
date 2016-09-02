@@ -9,16 +9,13 @@ class Validator(object):
     validator
     """
 
-    def __init__(self):
-        pass
-
     def validate(self, inputs):
         members = inspect.getmembers(self, lambda a:not(inspect.isroutine(a)))
         attributes = [a for a in members if not(a[0].startswith('__') and a[0].endswith('__'))]
         required_keys = [attr[0] for attr in attributes if attr[1].require]
 
         if [r for r in required_keys if r not in inputs.keys()]:
-            raise ValueError('key requried')
+            raise ValueError('required field not exsists')
 
         dict_attr = dict(attributes)
         for k in inputs.keys():
