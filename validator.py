@@ -1,7 +1,8 @@
-#coding: utf-8
+# coding: utf-8
 
 from siv import Validator
-from siv import IntegerField, StringField, IntegerField
+from siv import IntegerField, StringField
+
 
 class registerValidator(Validator):
     """
