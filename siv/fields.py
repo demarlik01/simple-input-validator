@@ -71,7 +71,7 @@ class IntegerField(NumbericField):
 
     def check(self):
         if isinstance(self.value, int) is False:
-            raise ValueError('Error %s is not int' % self.name)
+            raise ValueError('Error: %s is not int' % self.name)
 
 
 class FloatField(NumbericField):
@@ -83,7 +83,7 @@ class FloatField(NumbericField):
 
     def check(self):
         if isinstance(self.value, float) is False:
-            raise ValueError('Error %s is not float' % self.name)
+            raise ValueError('Error: %s is not float' % self.name)
 
 
 class StringField(Field):
@@ -102,14 +102,14 @@ class StringField(Field):
 
     def check(self):
         if self.is_string(self.value) is False:
-            raise ValueError('Error %s is not string' % self.name)
+            raise ValueError('Error: %s is not string' % self.name)
 
     def length_check(self):
         if self.min_length and len(self.value) < self.min_length:
-            raise ValueError('Error %s is too short' % self.name)
+            raise ValueError('Error: %s is too short' % self.name)
 
         if self.max_length and len(self.value) > self.max_length:
-            raise ValueError('Error %s is too long' % self.name)
+            raise ValueError('Error: %s is too long' % self.name)
 
     def process(self):
         self.empty_check()
@@ -130,4 +130,4 @@ class EmailField(StringField):
 
     def check(self):
         if re.match(self.email_regex, self.value) is None:
-            raise ValueError('Error %s is not email' % self.name)
+            raise ValueError('Error: %s is not email' % self.name)

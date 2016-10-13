@@ -4,10 +4,10 @@ from siv import Validator
 from siv import IntegerField, StringField
 
 
-class registerValidator(Validator):
+class RegisterValidator(Validator):
     """
     example
     """
     age = IntegerField(require=True)
-    name = StringField()
-    mobile = IntegerField()
+    name = StringField(max_length=5)
+    mobile = IntegerField(max=5)

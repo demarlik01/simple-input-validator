@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import inspect
-from fields import *
+from .fields import *
 
 
 class Validator(object):
@@ -15,16 +15,25 @@ class Validator(object):
         required_keys = [attr[0] for attr in attributes if attr[1].require]
 
         if [r for r in required_keys if r not in inputs.keys()]:
-            raise ValueError('required field not exsists')
+            self.error = ValueError('required field not exsists')
+            return False
 
         dict_attr = dict(attributes)
         for k in inputs.keys():
-            dict_attr.get(k).name = k
-            dict_attr.get(k).value = self.parse_to_numberic(inputs.get(k))
+            attr = dict_attr.get(k)
+            if attr is not None:
+                attr.name = k
+                attr.value = self.parse_to_numberic(inputs.get(k))
 
         for v in dict_attr.values():
             if v.value is not None:
-                v.process()
+                try:
+                    v.process()
+                except ValueError as e:
+                    self.error = e
+                    return False
+
+        return True
 
     def parse_to_numberic(self, value):
         try:

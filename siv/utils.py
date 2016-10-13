@@ -11,4 +11,3 @@ def validate(validator):
             return func(*args, **kwargs)
         return decorated_func
     return wrapper
-

@@ -1,18 +1,20 @@
 # coding: utf-8
 
-from flask import Flask
+from flask import Flask, request
 from siv import IntegerField, StringField
 from siv import validate
 
-from validator import registerValidator
+from validator import RegisterValidator
 
 
 app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
-@validate(validator=registerValidator())
 def hello():
-    return "hi"
+    validator = RegisterValidator()
+    if not validator.validate(request.args):
+        return str(validator.error)
+    return "success"
 
 if __name__ == "__main__":
     app.run(debug=True)
