@@ -1,11 +1,7 @@
 # coding: utf-8
 
 from flask import Flask, request
-from siv import IntegerField, StringField
-from siv import validate
-
-from validator import RegisterValidator
-
+from example_validator import RegisterValidator
 
 app = Flask(__name__)
 

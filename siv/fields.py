@@ -15,7 +15,9 @@ __all__ = [
 
 class Field(object):
     """
-    field
+    Field
+    - the base class of all Field classes
+
     """
     def __init__(self, name, value, require):
         self.name = name
