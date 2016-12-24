@@ -43,3 +43,9 @@ class Validator(object):
                 return float(value)
             except ValueError:
                 return value
+
+
+#class NestedValidator(object):
+    #"""
+    #nested Validator
+    #""" 

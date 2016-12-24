@@ -9,7 +9,7 @@ __all__ = [
     'IntegerField',
     'FloatField',
     'StringField',
-    'EmailField'
+    'RegexField'
 ]
 
 
@@ -119,17 +119,20 @@ class StringField(Field):
         self.length_check()
 
 
-class EmailField(StringField):
+class RegexField(StringField):
     """
-    EmailField
+    RegexField
     """
-    email_regex = '(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)'
 
-    def __init__(self, name, value=None, requrie=False, min_length=None, max_length=None, email_regex=None):
-        super(EmailField, self).__init__(name, value, requrie, min_length, max_length)
-        if email_regex is not None:
-            self.email_regex = email_regex
+    def __init__(self, name=None, value=None, requrie=False, min_length=None,
+            max_length=None, regex=None):
+        super(RegexField, self).__init__(name, value, requrie, min_length, max_length)
+        if regex is not None:
+            self.regex = regex
 
     def check(self):
-        if re.match(self.email_regex, self.value) is None:
-            raise ValueError('Error: %s is not email' % self.name)
+        if self.regex is None:
+            raise ValueError('Error: regex is not defined')
+
+        if re.match(self.regex, self.value) is None:
+            raise ValueError('Error: %s is not match regex format' % self.name)
