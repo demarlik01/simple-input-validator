@@ -27,9 +27,7 @@ def post():
 @app.route("/join", methods=['POST'])
 def join():
     validator = RegisterValidator()
-    print request.get_json()
     json_dict = json.loads(request.data)
-    print json_dict
     if not validator.validate(json_dict):
         return str(validator.error)
     return "success"
